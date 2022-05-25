@@ -3,7 +3,7 @@
     * Copyright 2013-2022 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
-    // 
+// 
 // Scripts
 // 
 
@@ -24,3 +24,35 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+function stock() {
+    fetch('../data/controller/ArticleController.php?action=all')
+        .then((response) => {
+            return response.json()
+        }).then((data) => {
+            let table = '';
+            for (const element of data) {
+                table += `<tr>
+                <td>${element.id}</td>
+                <td>${element.code}</td>
+                <td>${element.description}</td>
+                <td>${element.prix}</td>
+                <td>${element.stock}</td>
+                </tr>`
+            }
+            document.querySelector('main').innerHTML = `
+            <table class='table table-dark table-striped'> 
+            <thead>
+            <tr>
+            <th>id</th>
+            <th>code</th>
+            <th>description</th>
+            <th>prix</th>
+            <th>stock</th>
+            </tr>
+            </thead>
+            ${table} 
+            </table>`;
+        })
+}
+
