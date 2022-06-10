@@ -10,4 +10,5 @@ class Login
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
 }

@@ -31,7 +31,7 @@ function login() {
         <form action="../data/controller/LoginController.php" method="POST">
             <label for="login">Login</label>
             <input type="text" name="login">
-                <label htmlFor="login">Password</label>
+                <label for="login">Password</label>
                 <input type="password" name="password">
                     <button type="submit">Valider</button>
             
@@ -43,27 +43,28 @@ function login() {
 
 function registery(){
         document.querySelector('main').innerHTML =`
+        <div class="container">
          <form action="../data/controller/RegisteryController.php" method="POST">
         <label for="login">Nom user</label>
-        <input type="text" name="login" required><br>
+        <input class="form-control" type="text" name="login" required><br>
         <label for="password">Mot de passe</label>
-        <input type="password" name="password" required><br>
+        <input class="form-control" type="password" name="password" required><br>
         <label for="nom">Nom</label>
-        <input type="text" name="nom" required>
+        <input class="form-control" type="text" name="nom" required>
         <label for="prenom">Prénom</label>
-        <input type="text" name="prenom" required><br>
+        <input class="form-control"type="text" name="prenom" required><br>
         <label for="mail">Email</label>
-        <input type="email" name="mail" required><br>
+        <input class="form-control" type="email" name="mail" required><br>
         <label for="adresse1">Adresse 1</label>
-        <input type="text" name="adresse1" required>
+        <input class="form-control" type="text" name="adresse1" required>
         <label for="adresse2">Adresse 2</label>
-        <input type="text" name="adresse2">
+        <input class="form-control" type="text" name="adresse2">
         <label for="cp">Code postal</label>
-        <input type="text" name="cp" required>
+        <input class="form-control" type="text" name="cp" required>
         <label for="ville">Ville</label>
-        <input type="text"name="ville" required>
-        <button type="submit">Valider</button>
-    </form> `
+        <input class="form-control" type="text"name="ville" required>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </form></div> `
 
 
 }
@@ -140,19 +141,19 @@ function profile() {
         .then((response) => {
             return response.json()
         }).then((data) => {
-            console.log(data)
         let facture ="<div class='container'><h1>Facture :</h1>"
         for (const element of data) {
             facture += `
+            <h2>Facture du ${element.date}</h2>
             <p>Nom : ${element.nom} ${element.prenom}</p>
             <p>Adresse de livraison : ${element.adresse1} ${element.adresse2} ${element.ville} ${element.cp}</p>
             <p>Date de livraison : ${element.date}</p>
             <p>Article : ${element.description}</p>
             <p>Prix : ${element.prix}</p>
-            </div>
+            
             `}
 
-        document.querySelector('main').innerHTML += facture
+        document.querySelector('main').innerHTML += facture + '</div>'
     })
 
 

@@ -30,6 +30,7 @@ if (isset($_GET['action'])) {
         $id=$_SESSION['panier']['idp'];
         $article = new Article();
         $article->majArticle($id);
+        unset($_SESSION['panier']);
         header('Location: /index.html?command=ok');
 
 
